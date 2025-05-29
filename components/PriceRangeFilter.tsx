@@ -47,9 +47,9 @@ export default function PriceRangeFilter({
 
       <div className="space-y-2">
         <div>
-          <label className="block text-xs text-gray-500 mb-1">
+          <small className="block text-gray-500 mb-1">
             Min: ${priceRange.min}
-          </label>
+          </small>
           <input
             type="range"
             min="0"
@@ -60,9 +60,9 @@ export default function PriceRangeFilter({
           />
         </div>
         <div>
-          <label className="block text-xs text-gray-500 mb-1">
+          <small className="block text-gray-500 mb-1">
             Max: ${priceRange.max}
-          </label>
+          </small>
           <input
             type="range"
             min="0"

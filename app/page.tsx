@@ -1,4 +1,5 @@
 import Filters from '@/components/Filters';
+import ProductGrid from '@/components/ProductGrid';
 import { Product, SearchParams } from '@/types';
 
 interface ApiResponse {
@@ -70,7 +71,9 @@ export default async function Home({
         <Filters initialFilters={params} />
 
         {/* Main Content */}
-        <div className="flex-1 bg-red-500"></div>
+        <div className="flex-1">
+          <ProductGrid products={products.products} />
+        </div>
       </div>
     </div>
   );
