@@ -12,10 +12,22 @@ export default function ActiveFilters() {
   const { priceRange, setPriceRange } = usePriceRange();
   const { search, setSearch } = useSearch();
 
+  console.log(category);
+  const hasActiveFilters =
+    search ||
+    (!!category && category !== 'All') ||
+    priceRange.min > 0 ||
+    priceRange.max < 500;
+
+  console.log(hasActiveFilters);
+  if (!hasActiveFilters) return null;
+
   const resetAllFilters = () => {
     setCategory('All');
     setPriceRange({ min: 0, max: 500 });
     setSearch('');
+
+    router.push(window.location.pathname);
   };
 
   const cancelFilter = (key: keyof SearchParams) => {
@@ -29,10 +41,6 @@ export default function ActiveFilters() {
     router.push(`${window.location.pathname}?${params.toString()}`);
   };
 
-  const hasActiveFilters =
-    search || category !== 'All' || priceRange.min > 0 || priceRange.max < 500;
-
-  if (!hasActiveFilters) return null;
   return (
     <div className="mb-6">
       <div className="flex flex-wrap items-center gap-2">
@@ -69,7 +77,7 @@ export default function ActiveFilters() {
         )}
 
         {/* Category filter chip */}
-        {category !== 'All' && (
+        {category && category !== 'All' && (
           <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
             Category: {category}
             <button
