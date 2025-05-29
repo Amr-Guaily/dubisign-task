@@ -2,22 +2,23 @@
 
 import { SearchParams } from '@/types';
 import { CATEGORIES } from '@/data/products';
+import { useCategory } from '@/context/CategoryContext';
 
 interface CategoryFilterProps {
-  selectedCategory: string;
   onChange: (key: keyof SearchParams, value: string) => void;
 }
 
-export default function CategoryFilter({
-  selectedCategory,
-  onChange,
-}: CategoryFilterProps) {
+export default function CategoryFilter({ onChange }: CategoryFilterProps) {
+  const { category, setCategory } = useCategory();
   return (
     <div>
       <label>Category</label>
       <select
-        value={selectedCategory}
-        onChange={(e) => onChange('category', e.target.value)}
+        value={category}
+        onChange={(e) => {
+          setCategory(e.target.value);
+          onChange('category', e.target.value);
+        }}
       >
         {CATEGORIES.map((category) => (
           <option key={category} value={category}>

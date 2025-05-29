@@ -10,7 +10,6 @@ export default function Filters() {
   const router = useRouter();
 
   const handleFiltersChange = (key: keyof SearchParams, value: string) => {
-    console.log(`Filter changed: ${key} = ${value}`);
     const params = new URLSearchParams(window.location.search);
     if (value) {
       params.set(key, value);
@@ -29,11 +28,9 @@ export default function Filters() {
       <div className="p-4 flex flex-col gap-4">
         <SearchBar onChange={handleFiltersChange} />
 
-        {/* <CategoryFilter
-          selectedCategory={initialFilters.category || ''}
-          onChange={handleFiltersChange}
-        />
+        <CategoryFilter onChange={handleFiltersChange} />
 
+        {/*
         <PriceRangeFilter
           selectedRange={{
             min: Number(initialFilters.minPrice ?? 0),
