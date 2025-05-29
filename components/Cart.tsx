@@ -2,28 +2,25 @@
 
 import ReactDOM from 'react-dom';
 import Image from 'next/image';
-import type { CartItem } from '@/types';
+import { useCart } from '@/context/CartContext';
 
 interface CartProps {
   isOpen: boolean;
-  items: CartItem[];
-  cartTotal: number;
   onClose: () => void;
-  onUpdateQuantity: (productId: number, quantity: number) => void;
-  onRemoveItem: (productId: number) => void;
-  onPurchase: () => void;
 }
 
-export default function Cart({
-  isOpen,
-  items,
-  onClose,
-  onUpdateQuantity,
-  onRemoveItem,
-  onPurchase,
-}: CartProps) {
-  const getTotalPrice = () => {
-    return items.reduce((total, item) => total + item.price * item.quantity, 0);
+export default function Cart({ isOpen, onClose }: CartProps) {
+  const { cart, removeFromCart, updateQuantity, getTotalPrice, clearCart } =
+    useCart();
+
+  const handlePurchase = () => {
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+    alert(`Purchase successful! Total: $${getTotalPrice().toFixed(2)}`);
+    clearCart();
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -60,7 +57,7 @@ export default function Cart({
 
           {/* Cart Items */}
           <div className="flex-1 overflow-y-auto p-4">
-            {items.length === 0 ? (
+            {cart.length === 0 ? (
               <div className="text-center py-8">
                 <div className="w-16 h-16 mx-auto mb-4 text-gray-300">
                   <svg fill="currentColor" viewBox="0 0 24 24">
@@ -74,7 +71,7 @@ export default function Cart({
               </div>
             ) : (
               <div className="space-y-4">
-                {items.map((item) => (
+                {cart.map((item) => (
                   <div
                     key={item.id}
                     className="flex items-center space-x-3 bg-gray-50 p-3 rounded-lg"
@@ -98,7 +95,7 @@ export default function Cart({
                       <div className="flex items-center space-x-2 mt-1">
                         <button
                           onClick={() =>
-                            onUpdateQuantity(item.id, item.quantity - 1)
+                            updateQuantity(item.id, item.quantity - 1)
                           }
                           className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
                         >
@@ -109,7 +106,7 @@ export default function Cart({
                         </span>
                         <button
                           onClick={() =>
-                            onUpdateQuantity(item.id, item.quantity + 1)
+                            updateQuantity(item.id, item.quantity + 1)
                           }
                           className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
                         >
@@ -122,7 +119,7 @@ export default function Cart({
                         ${(item.price * item.quantity).toFixed(2)}
                       </p>
                       <button
-                        onClick={() => onRemoveItem(item.id)}
+                        onClick={() => removeFromCart(item.id)}
                         className="text-red-500 hover:text-red-700 text-sm transition-colors"
                       >
                         Remove
@@ -135,14 +132,14 @@ export default function Cart({
           </div>
 
           {/* Cart Footer */}
-          {items.length > 0 && (
+          {cart.length > 0 && (
             <div className="border-t p-4 space-y-4">
               <div className="flex justify-between items-center text-lg font-semibold">
                 <span>Total:</span>
                 <span>${getTotalPrice().toFixed(2)}</span>
               </div>
               <button
-                onClick={onPurchase}
+                onClick={handlePurchase}
                 className="w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition-colors font-medium"
               >
                 Purchase Now
