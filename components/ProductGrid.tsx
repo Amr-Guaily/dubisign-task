@@ -10,14 +10,14 @@ interface ProductGridProps {
 export default function ProductGrid({ products }: ProductGridProps) {
   return (
     <div>
-      <div className="bg-white py-3 px-4 rounded shadow-sm !mb-4 flex justify-between items-center">
+      <div className="bg-white py-3 px-4 rounded shadow-sm mb-4 flex justify-between items-center">
         <p className="text-sm text-gray-600">
           {products.length} {products.length === 1 ? 'product' : 'products'}{' '}
           found
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
