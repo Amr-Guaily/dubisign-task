@@ -1,26 +1,21 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import type { PriceRange, SearchParams } from '@/types';
+import { useMemo } from 'react';
+import type { SearchParams } from '@/types';
 
 import { debounce } from '@/utils/debounce';
+import { usePriceRange } from '@/context/PriceRangeContext';
 
 interface PriceRangeFilterProps {
-  selectedRange: PriceRange;
   onChange: (key: keyof SearchParams, value: string) => void;
   maxPrice?: number;
 }
 
 export default function PriceRangeFilter({
-  selectedRange,
   onChange,
   maxPrice = 500,
 }: PriceRangeFilterProps) {
-  const [priceRange, setPriceRange] = useState<PriceRange>({
-    min: selectedRange.min,
-    max: selectedRange.max || maxPrice,
-  });
-
+  const { priceRange, setPriceRange } = usePriceRange();
   const debouncedOnChange = useMemo(() => debounce(onChange, 300), []);
 
   const handleSliderChange = (type: 'min' | 'max', value: number) => {

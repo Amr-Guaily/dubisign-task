@@ -1,6 +1,7 @@
 import Filters from '@/components/Filters';
 import ProductGrid from '@/components/ProductGrid';
 import { CategoryProvider } from '@/context/CategoryContext';
+import { PriceRangeProvider } from '@/context/PriceRangeContext';
 import { SearchProvider } from '@/context/SearchContext';
 import { Product, SearchParams } from '@/types';
 
@@ -71,13 +72,20 @@ export default async function Home({
       <div className="flex flex-col md:flex-row gap-4">
         <SearchProvider initialSearch={params.search}>
           <CategoryProvider initialCategory={params.category}>
-            {/* Sidebar Filters */}
-            <Filters />
+            <PriceRangeProvider
+              initialPriceRange={{
+                min: Number(params.minPrice) || 0,
+                max: Number(params.maxPrice) || 500,
+              }}
+            >
+              {/* Sidebar Filters */}
+              <Filters />
 
-            {/* Main Content */}
-            <div className="flex-1">
-              <ProductGrid products={products.products} />
-            </div>
+              {/* Main Content */}
+              <div className="flex-1">
+                <ProductGrid products={products.products} />
+              </div>
+            </PriceRangeProvider>
           </CategoryProvider>
         </SearchProvider>
       </div>

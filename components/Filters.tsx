@@ -30,15 +30,7 @@ export default function Filters() {
 
         <CategoryFilter onChange={handleFiltersChange} />
 
-        {/*
-        <PriceRangeFilter
-          selectedRange={{
-            min: Number(initialFilters.minPrice ?? 0),
-            max: Number(initialFilters.maxPrice ?? 0),
-          }}
-          onChange={handleFiltersChange}
-          maxPrice={500}
-        /> */}
+        <PriceRangeFilter onChange={handleFiltersChange} maxPrice={500} />
       </div>
     </div>
   );
