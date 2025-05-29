@@ -6,11 +6,7 @@ import { useRouter } from 'next/navigation';
 import CategoryFilter from './CategoryFilter';
 import PriceRangeFilter from './PriceRangeFilter';
 
-export default function Filters({
-  initialFilters,
-}: {
-  initialFilters: SearchParams;
-}) {
+export default function Filters() {
   const router = useRouter();
 
   const handleFiltersChange = (key: keyof SearchParams, value: string) => {
@@ -31,12 +27,9 @@ export default function Filters({
       </div>
 
       <div className="p-4 flex flex-col gap-4">
-        <SearchBar
-          search={initialFilters.search}
-          onChange={handleFiltersChange}
-        />
+        <SearchBar onChange={handleFiltersChange} />
 
-        <CategoryFilter
+        {/* <CategoryFilter
           selectedCategory={initialFilters.category || ''}
           onChange={handleFiltersChange}
         />
@@ -48,7 +41,7 @@ export default function Filters({
           }}
           onChange={handleFiltersChange}
           maxPrice={500}
-        />
+        /> */}
       </div>
     </div>
   );

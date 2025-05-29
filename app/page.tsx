@@ -1,5 +1,6 @@
 import Filters from '@/components/Filters';
 import ProductGrid from '@/components/ProductGrid';
+import { SearchProvider } from '@/context/SearchContext';
 import { Product, SearchParams } from '@/types';
 
 interface ApiResponse {
@@ -67,13 +68,15 @@ export default async function Home({
   return (
     <div className="container px-4 sm:px-6 md:px-8 py-8">
       <div className="flex flex-col md:flex-row gap-4">
-        {/* Sidebar Filters */}
-        <Filters initialFilters={params} />
+        <SearchProvider initialSearch={params.search}>
+          {/* Sidebar Filters */}
+          <Filters />
 
-        {/* Main Content */}
-        <div className="flex-1">
-          <ProductGrid products={products.products} />
-        </div>
+          {/* Main Content */}
+          <div className="flex-1">
+            <ProductGrid products={products.products} />
+          </div>
+        </SearchProvider>
       </div>
     </div>
   );
