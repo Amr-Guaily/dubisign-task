@@ -12,14 +12,12 @@ export default function ActiveFilters() {
   const { priceRange, setPriceRange } = usePriceRange();
   const { search, setSearch } = useSearch();
 
-  console.log(category);
   const hasActiveFilters =
     search ||
     (!!category && category !== 'All') ||
     priceRange.min > 0 ||
     priceRange.max < 500;
 
-  console.log(hasActiveFilters);
   if (!hasActiveFilters) return null;
 
   const resetAllFilters = () => {

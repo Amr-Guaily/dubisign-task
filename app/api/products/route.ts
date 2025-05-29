@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const maxPrice = Number(searchParams.get('maxPrice')) || 500;
 
   // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve, 200));
 
   const filteredProducts = PRODUCTS.filter((product) => {
     const matchesSearch = product.name
