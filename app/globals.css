@@ -42,6 +42,11 @@ select {
   @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-700;
 }
 
+input[type='range'] {
+  padding: 0;
+  @apply focus:ring-0;
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;

@@ -4,6 +4,7 @@ import SearchBar from '@/components/SearchBar';
 import { SearchParams } from '@/types';
 import { useRouter } from 'next/navigation';
 import CategoryFilter from './CategoryFilter';
+import PriceRangeFilter from './PriceRangeFilter';
 
 export default function Filters({
   initialFilters,
@@ -29,7 +30,7 @@ export default function Filters({
         <h2 className="text-xl font-semibold text-slate-800">Filters</h2>
       </div>
 
-      <div className="p-4 flex flex-col gap-3">
+      <div className="p-4 flex flex-col gap-4">
         <SearchBar
           search={initialFilters.search}
           onChange={handleFiltersChange}
@@ -38,6 +39,15 @@ export default function Filters({
         <CategoryFilter
           selectedCategory={initialFilters.category || ''}
           onChange={handleFiltersChange}
+        />
+
+        <PriceRangeFilter
+          selectedRange={{
+            min: Number(initialFilters.minPrice ?? 0),
+            max: Number(initialFilters.maxPrice ?? 0),
+          }}
+          onChange={handleFiltersChange}
+          maxPrice={500}
         />
       </div>
     </div>
