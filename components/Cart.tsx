@@ -82,7 +82,6 @@ export default function Cart({ isOpen, onClose }: CartProps) {
                         alt={item.name}
                         fill
                         className="rounded-md object-cover"
-                        priority={true}
                         sizes="64px"
                       />
                     </div>

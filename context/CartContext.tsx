@@ -24,8 +24,8 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const storedCart = localStorage.getItem(CART_KEY);
-    if (storedCart) {
+    if (typeof window !== 'undefined') {
+      const storedCart = localStorage.getItem(CART_KEY);
       return storedCart ? JSON.parse(storedCart) : [];
     }
     return [];

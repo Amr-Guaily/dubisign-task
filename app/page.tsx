@@ -1,13 +1,10 @@
 import ActiveFilters from '@/components/ActiveFilters';
 import Filters from '@/components/Filters';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import ProductGrid from '@/components/ProductGrid';
 import { CategoryProvider } from '@/context/CategoryContext';
 import { PriceRangeProvider } from '@/context/PriceRangeContext';
 import { SearchProvider } from '@/context/SearchContext';
 import { SearchParams } from '@/types';
-
-import { Suspense } from 'react';
 
 export default async function Home({
   searchParams,
@@ -34,9 +31,7 @@ export default async function Home({
               <div className="flex-1">
                 <ActiveFilters />
 
-                <Suspense fallback={<LoadingSpinner />}>
-                  <ProductGrid />
-                </Suspense>
+                <ProductGrid />
               </div>
             </PriceRangeProvider>
           </CategoryProvider>
