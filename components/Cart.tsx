@@ -28,7 +28,7 @@ export default function Cart({ isOpen, onClose }: CartProps) {
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 overflow-hidden">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl">
+      <div className="absolute right-0 top-0 h-full w-[90%] max-w-md bg-white shadow-xl">
         <div className="flex flex-col h-full">
           {/* Cart Header */}
           <div className="flex items-center justify-between p-4 border-b">
@@ -82,6 +82,7 @@ export default function Cart({ isOpen, onClose }: CartProps) {
                         alt={item.name}
                         fill
                         className="rounded-md object-cover"
+                        priority={true}
                         sizes="64px"
                       />
                     </div>

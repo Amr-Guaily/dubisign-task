@@ -40,100 +40,102 @@ export default function ActiveFilters() {
   };
 
   return (
-    <div className="mb-6">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm font-medium text-gray-700">
-          Active Filters:
-        </span>
-
-        {/* Search filter chip */}
-        {search && (
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800">
-            Search: {search}
-            <button
-              onClick={() => {
-                cancelFilter('search');
-                setSearch('');
-              }}
-              className="ml-1 text-blue-600 hover:text-blue-800"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+    <div className="mb-4">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sm font-medium text-gray-700">
+            Active Filters:
           </span>
-        )}
 
-        {/* Category filter chip */}
-        {category && category !== 'All' && (
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
-            Category: {category}
-            <button
-              onClick={() => {
-                cancelFilter('category');
-                setCategory('All');
-              }}
-              className="ml-1 text-green-600 hover:text-green-800"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          {/* Search filter chip */}
+          {search && (
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800">
+              Search: {search}
+              <button
+                onClick={() => {
+                  cancelFilter('search');
+                  setSearch('');
+                }}
+                className="ml-1 text-blue-600 hover:text-blue-800"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </span>
-        )}
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </span>
+          )}
 
-        {/* Price range filter chip */}
-        {(priceRange.min > 0 || priceRange.max < 500) && (
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-purple-100 text-purple-800">
-            Price: ${priceRange.min} - ${priceRange.max}
-            <button
-              onClick={() => {
-                cancelFilter('minPrice');
-                setPriceRange({ min: 0, max: 500 });
-              }}
-              className="ml-1 text-purple-600 hover:text-purple-800"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          {/* Category filter chip */}
+          {category && category !== 'All' && (
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
+              Category: {category}
+              <button
+                onClick={() => {
+                  cancelFilter('category');
+                  setCategory('All');
+                }}
+                className="ml-1 text-green-600 hover:text-green-800"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </span>
-        )}
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </span>
+          )}
+
+          {/* Price range filter chip */}
+          {(priceRange.min > 0 || priceRange.max < 500) && (
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-purple-100 text-purple-800">
+              Price: ${priceRange.min} - ${priceRange.max}
+              <button
+                onClick={() => {
+                  cancelFilter('minPrice');
+                  setPriceRange({ min: 0, max: 500 });
+                }}
+                className="ml-1 text-purple-600 hover:text-purple-800"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </span>
+          )}
+        </div>
 
         {/* Reset all button */}
         <button
           onClick={resetAllFilters}
-          className="ml-2 px-3 py-1 text-sm text-red-600 hover:text-red-800 hover:underline flex items-center"
+          className="px-3 py-1 whitespace-nowrap text-sm text-red-600 hover:text-red-800 hover:underline flex items-center"
         >
           <svg
             className="w-4 h-4 mr-1"

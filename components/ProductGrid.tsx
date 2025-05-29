@@ -33,11 +33,10 @@ export default function ProductGrid() {
   return (
     <div>
       {products.length > 0 && (
-        <div className="bg-white py-3 px-4 rounded shadow-sm mb-4 flex justify-between items-center">
-          <p className="text-sm text-gray-600">
-            {products.length} {products.length === 1 ? 'product' : 'products'}{' '}
-            found
-          </p>
+        <div className="mb-5">
+          <h2 className="text-xl font-semibold text-slate-900">
+            Products ({products.length})
+          </h2>
         </div>
       )}
 

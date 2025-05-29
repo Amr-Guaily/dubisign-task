@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { CartItem } from '@/types';
-import { CART_KEY } from '@/utils/constants';
+
+const CART_KEY = 'dubisign::cart';
 
 interface CartContextProps {
   cart: CartItem[];
@@ -23,8 +24,8 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
-    if (typeof window !== 'undefined') {
-      const storedCart = localStorage.getItem(CART_KEY);
+    const storedCart = localStorage.getItem(CART_KEY);
+    if (storedCart) {
       return storedCart ? JSON.parse(storedCart) : [];
     }
     return [];

@@ -12,7 +12,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
+    <div className="bg-white rounded shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
       <div className="aspect-square relative overflow-hidden">
         <Image
           src={product.image || '/placeholder.svg'}
@@ -20,6 +20,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          priority={true}
         />
       </div>
       <div className="p-4">
