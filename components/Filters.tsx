@@ -3,6 +3,7 @@
 import SearchBar from '@/components/SearchBar';
 import { SearchParams } from '@/types';
 import { useRouter } from 'next/navigation';
+import CategoryFilter from './CategoryFilter';
 
 export default function Filters({
   initialFilters,
@@ -23,14 +24,19 @@ export default function Filters({
   };
 
   return (
-    <div className="bg-white shadow-lg md:shadow-sm rounded-none md:rounded md:w-64 space-y-6">
+    <div className="bg-white shadow-lg md:shadow-sm rounded-none md:rounded md:w-72 space-y-6">
       <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
         <h2 className="text-xl font-semibold text-slate-800">Filters</h2>
       </div>
 
-      <div className="p-4 space-y-6">
+      <div className="p-4 flex flex-col gap-3">
         <SearchBar
           search={initialFilters.search}
+          onChange={handleFiltersChange}
+        />
+
+        <CategoryFilter
+          selectedCategory={initialFilters.category || ''}
           onChange={handleFiltersChange}
         />
       </div>
