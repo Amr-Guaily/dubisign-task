@@ -2,12 +2,15 @@
 
 import Image from 'next/image';
 import type { Product } from '@/types';
+import { useCart } from '@/context/CartContext';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart();
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
       <div className="aspect-square relative overflow-hidden">
@@ -27,7 +30,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         <p className="text-lg font-bold text-gray-900 mb-3">
           ${product.price.toFixed(2)}
         </p>
-        <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors font-medium">
+        <button
+          onClick={() => addToCart({ ...product, quantity: 1 })}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors font-medium"
+        >
           Add to Cart
         </button>
       </div>

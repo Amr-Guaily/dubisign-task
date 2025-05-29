@@ -101,7 +101,7 @@ export default function Cart({ isOpen, onClose }: CartProps) {
                         >
                           -
                         </button>
-                        <span className="text-sm font-medium min-w-[20px] text-center">
+                        <span className="text-sm font-medium min-w-[20px] text-center text-slate-700">
                           {item.quantity}
                         </span>
                         <button
@@ -115,7 +115,7 @@ export default function Cart({ isOpen, onClose }: CartProps) {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-medium">
+                      <p className="text-sm font-medium text-slate-700">
                         ${(item.price * item.quantity).toFixed(2)}
                       </p>
                       <button
@@ -134,7 +134,7 @@ export default function Cart({ isOpen, onClose }: CartProps) {
           {/* Cart Footer */}
           {cart.length > 0 && (
             <div className="border-t p-4 space-y-4">
-              <div className="flex justify-between items-center text-lg font-semibold">
+              <div className="flex justify-between items-center text-lg font-semibold text-slate-700">
                 <span>Total:</span>
                 <span>${getTotalPrice().toFixed(2)}</span>
               </div>
