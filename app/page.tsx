@@ -1,11 +1,4 @@
-import { Product } from '@/types';
-
-interface SearchParams {
-  search?: string;
-  category?: string;
-  minPrice?: string;
-  maxPrice?: string;
-}
+import { Product, SearchParams } from '@/types';
 
 interface ApiResponse {
   products: Product[];
@@ -65,7 +58,6 @@ export default async function Home({
   searchParams: Promise<SearchParams>;
 }) {
   const params = await searchParams;
-
   const products = await getProducts(params);
 
   console.log('Fetched products:', products);

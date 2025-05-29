@@ -14,3 +14,10 @@ export interface PriceRange {
   min: number;
   max: number;
 }
+
+export interface SearchParams {
+  search?: string;
+  category?: string;
+  minPrice?: string;
+  maxPrice?: string;
+}
