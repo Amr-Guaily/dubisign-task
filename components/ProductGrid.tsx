@@ -10,7 +10,7 @@ import LoadingSpinner from './LoadingSpinner';
 export default function ProductGrid() {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,7 +47,7 @@ export default function ProductGrid() {
         ))}
       </div>
 
-      {products.length === 0 && loading && (
+      {!loading && products.length === 0 && (
         <div className="text-center py-12">
           <p className="text-gray-500 text-lg">
             No products found matching your criteria.
