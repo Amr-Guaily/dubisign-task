@@ -19,6 +19,10 @@
   }
 }
 
+body * {
+  box-sizing: border-box;
+  margin: 0;
+}
 body {
   background: var(--background);
   color: var(--foreground);
@@ -27,4 +31,14 @@ body {
 
 button {
   cursor: pointer;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
 }

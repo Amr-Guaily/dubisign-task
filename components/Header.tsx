@@ -8,7 +8,7 @@ interface HeaderProps {
 export default function Header({ onCartToggle, cartItemCount }: HeaderProps) {
   return (
     <header className="bg-white sticky top-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container">
         <div className="flex items-center justify-between h-16">
           <div className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
             ShopHub

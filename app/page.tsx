@@ -64,10 +64,10 @@ export default async function Home({
   console.log('Fetched products:', products);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8">
+    <div className="container px-4 sm:px-6 md:px-8 py-8">
       <div className="flex flex-col md:flex-row gap-4">
         {/* Sidebar Filters */}
-        <Filters />
+        <Filters initialFilters={params} />
 
         {/* Main Content */}
         <div className="flex-1 bg-red-500"></div>
