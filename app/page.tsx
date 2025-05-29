@@ -1,3 +1,4 @@
+import ActiveFilters from '@/components/ActiveFilters';
 import Filters from '@/components/Filters';
 import ProductGrid from '@/components/ProductGrid';
 import { CategoryProvider } from '@/context/CategoryContext';
@@ -83,6 +84,7 @@ export default async function Home({
 
               {/* Main Content */}
               <div className="flex-1">
+                <ActiveFilters />
                 <ProductGrid products={products.products} />
               </div>
             </PriceRangeProvider>
