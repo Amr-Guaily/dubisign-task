@@ -49,7 +49,7 @@ export default async function Home({
   );
 }
 
-export async function ProductList({ params }: { params: SearchParams }) {
+async function ProductList({ params }: { params: SearchParams }) {
   const products = await getProducts(params);
 
   return <ProductGrid initialProducts={products.products} />;
