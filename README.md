@@ -124,47 +124,6 @@ Using yarn:
 yarn dev
 ```
 
-### Step 5: Open in Browser
-
-Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
-
-```
-shopping-landing-page/
-├── app/                          # Next.js App Router
-│   ├── api/                      # API routes
-│   │   └── products/             # Product API endpoint
-│   ├── products/                 # Product pages
-│   │   └── [id]/                 # Dynamic product detail pages
-│   ├── layout.tsx                # Root layout
-│   ├── page.tsx                  # Home page (server component)
-│   └── globals.css               # Global styles
-├── components/                   # Reusable React components
-│   ├── ActiveFilters.tsx         # Filter chips display
-│   ├── Cart.tsx                  # Shopping cart sidebar
-│   ├── CategoryFilter.tsx        # Category dropdown filter
-│   ├── Header.tsx                # Navigation header
-│   ├── LoadingSpinner.tsx        # Loading indicator
-│   ├── PriceRangeFilter.tsx      # Price range filter (dual mode)
-│   ├── ProductCard.tsx           # Individual product display
-│   ├── ProductDetail.tsx         # Product detail page
-│   ├── ProductGrid.tsx           # Product listing grid
-│   ├── SearchBar.tsx             # Search input component
-│   ├── SharedLayout.tsx          # Shared layout wrapper
-│   └── ShoppingClient.tsx        # Main client component
-├── contexts/                     # React Context providers
-│   └── FilterContext.tsx         # Filter state management
-├── lib/                          # Utility functions and data
-│   └── products.ts               # Product data and categories
-├── types/                        # TypeScript type definitions
-│   └── index.ts                  # Shared interfaces
-├── public/                       # Static assets
-├── README.md                     # Project documentation
-├── package.json                  # Dependencies and scripts
-├── tailwind.config.ts            # Tailwind CSS configuration
-├── tsconfig.json                 # TypeScript configuration
-└── next.config.mjs               # Next.js configuration
-```
-
 ## 🎯 Key Features Explained
 
 ### 1. Advanced Filtering System
