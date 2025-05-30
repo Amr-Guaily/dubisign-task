@@ -19,7 +19,7 @@ export default function ProductGrid({ initialProducts }: ProductGridProps) {
       {initialProducts.length > 0 && (
         <div className="mb-5">
           <h2 className="text-xl font-semibold text-slate-900">
-            initialProducts ({initialProducts.length})
+            Products ({initialProducts.length})
           </h2>
         </div>
       )}
