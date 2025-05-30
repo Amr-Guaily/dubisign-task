@@ -5,12 +5,25 @@ import { usePriceRange } from '@/context/PriceRangeContext';
 import { useSearch } from '@/context/SearchContext';
 import { useRouter } from 'next/navigation';
 import { SearchParams } from '@/types';
+import { useTransition, useEffect } from 'react';
+import { useLoading } from '@/context/LoadingContext';
 
 export default function ActiveFilters() {
   const router = useRouter();
   const { category, setCategory } = useCategory();
   const { priceRange, setPriceRange } = usePriceRange();
   const { search, setSearch } = useSearch();
+
+  const { setIsLoading } = useLoading();
+  const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (isPending) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [isPending]);
 
   const hasActiveFilters =
     search ||
@@ -25,7 +38,9 @@ export default function ActiveFilters() {
     setPriceRange({ min: 0, max: 500 });
     setSearch('');
 
-    router.push(window.location.pathname);
+    startTransition(() => {
+      router.push(window.location.pathname);
+    });
   };
 
   const cancelFilter = (key: keyof SearchParams) => {
@@ -36,7 +51,9 @@ export default function ActiveFilters() {
     }
     params.delete(key);
 
-    router.push(`${window.location.pathname}?${params.toString()}`);
+    startTransition(() => {
+      router.push(`${window.location.pathname}?${params.toString()}`);
+    });
   };
 
   return (

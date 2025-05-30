@@ -1,23 +1,35 @@
 'use client';
 
-import SearchBar from '@/components/SearchBar';
-import { SearchParams } from '@/types';
+import { useEffect, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import CategoryFilter from './CategoryFilter';
-import PriceRangeFilter from './PriceRangeFilter';
+import SearchBar from '@/components/SearchBar';
+import CategoryFilter from '@/components/CategoryFilter';
+import PriceRangeFilter from '@/components/PriceRangeFilter';
+import { useLoading } from '@/context/LoadingContext';
+import { SearchParams } from '@/types';
 
 export default function Filters() {
   const router = useRouter();
+  const { setIsLoading } = useLoading();
+  const [isPending, startTransition] = useTransition();
 
   const handleFiltersChange = (key: keyof SearchParams, value: string) => {
     const params = new URLSearchParams(window.location.search);
-    if (value) {
-      params.set(key, value);
-    } else {
-      params.delete(key);
-    }
-    router.push(`${window.location.pathname}?${params.toString()}`);
+    if (value) params.set(key, value);
+    else params.delete(key);
+
+    startTransition(() => {
+      router.push(`${window.location.pathname}?${params.toString()}`);
+    });
   };
+
+  useEffect(() => {
+    if (isPending) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [isPending]);
 
   return (
     <div className="md:sticky md:top-20 bg-white shadow-lg md:shadow-sm rounded-none md:rounded md:w-72 space-y-6 h-fit">
@@ -31,6 +43,16 @@ export default function Filters() {
         <CategoryFilter onChange={handleFiltersChange} />
 
         <PriceRangeFilter onChange={handleFiltersChange} maxPrice={500} />
+      </div>
+
+      <div className="px-4 py-3 border-t border-gray-200">
+        {isPending ? (
+          <div className="text-center text-gray-500">Applying filters...</div>
+        ) : (
+          <div className="text-center text-gray-500">
+            Adjust filters to refine your search.
+          </div>
+        )}
       </div>
     </div>
   );

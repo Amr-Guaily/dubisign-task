@@ -1,10 +1,16 @@
+import { Suspense } from 'react';
+
 import ActiveFilters from '@/components/ActiveFilters';
 import Filters from '@/components/Filters';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import ProductGrid from '@/components/ProductGrid';
+
 import { CategoryProvider } from '@/context/CategoryContext';
 import { PriceRangeProvider } from '@/context/PriceRangeContext';
 import { SearchProvider } from '@/context/SearchContext';
+
 import { SearchParams } from '@/types';
+import { getProducts } from '@/utils/getProducts';
 
 export default async function Home({
   searchParams,
@@ -31,7 +37,9 @@ export default async function Home({
               <div className="flex-1">
                 <ActiveFilters />
 
-                <ProductGrid />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <ProductList params={params} />
+                </Suspense>
               </div>
             </PriceRangeProvider>
           </CategoryProvider>
@@ -39,4 +47,10 @@ export default async function Home({
       </div>
     </div>
   );
+}
+
+export async function ProductList({ params }: { params: SearchParams }) {
+  const products = await getProducts(params);
+
+  return <ProductGrid initialProducts={products.products} />;
 }

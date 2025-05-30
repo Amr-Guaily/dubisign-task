@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Cart from './Cart';
 import { ToastProvider } from '@/context/ToastContext';
 import ToastContainer from './ToastContainer';
+import { LoadingProvider } from '@/context/LoadingContext';
 
 interface SharedLayoutProps {
   children: React.ReactNode;
@@ -26,7 +27,9 @@ export default function SharedLayout({ children }: SharedLayoutProps) {
       <div className="min-h-screen bg-gray-50">
         <Header onCartToggle={() => setIsCartOpen(!isCartOpen)} />
 
-        <main>{children}</main>
+        <LoadingProvider>
+          <main>{children}</main>
+        </LoadingProvider>
 
         <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       </div>
