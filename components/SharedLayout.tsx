@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Cart from './Cart';
 
@@ -10,6 +10,14 @@ interface SharedLayoutProps {
 
 export default function SharedLayout({ children }: SharedLayoutProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isCartOpen]);
 
   return (
     <div className="min-h-screen bg-gray-50">
