@@ -172,11 +172,10 @@ GET /api/products?search=headphones&category=Electronics&minPrice=50&maxPrice=20
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Vercel
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically with zero configuration
+**Live Demo:**  
+[https://dubisign-task-two.vercel.app/](https://dubisign-task-two.vercel.app/)
 
 ---
 
