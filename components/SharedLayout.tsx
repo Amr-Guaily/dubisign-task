@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Cart from './Cart';
+import { ToastProvider } from '@/context/ToastContext';
+import ToastContainer from './ToastContainer';
 
 interface SharedLayoutProps {
   children: React.ReactNode;
@@ -20,12 +22,16 @@ export default function SharedLayout({ children }: SharedLayoutProps) {
   }, [isCartOpen]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header onCartToggle={() => setIsCartOpen(!isCartOpen)} />
+    <ToastProvider>
+      <div className="min-h-screen bg-gray-50">
+        <Header onCartToggle={() => setIsCartOpen(!isCartOpen)} />
 
-      <main>{children}</main>
+        <main>{children}</main>
 
-      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-    </div>
+        <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      </div>
+
+      <ToastContainer />
+    </ToastProvider>
   );
 }

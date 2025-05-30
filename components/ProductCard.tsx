@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import type { Product } from '@/types';
 import { useCart } from '@/context/CartContext';
+import { useToast } from '@/context/ToastContext';
 
 interface ProductCardProps {
   product: Product;
@@ -10,6 +11,12 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
+  const { addToast } = useToast();
+
+  const handleAddToCart = ({ product }: { product: Product }) => {
+    addToCart({ ...product, quantity: 1 });
+    addToast(`${product.name} added to cart!`, 'success');
+  };
 
   return (
     <div className="bg-white rounded shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
@@ -31,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           ${product.price.toFixed(2)}
         </p>
         <button
-          onClick={() => addToCart({ ...product, quantity: 1 })}
+          onClick={() => handleAddToCart({ product })}
           className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors font-medium"
         >
           Add to Cart
