@@ -18,11 +18,7 @@ export default function ActiveFilters() {
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    if (isPending) {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
-    }
+    setIsLoading(isPending);
   }, [isPending]);
 
   const hasActiveFilters =

@@ -24,11 +24,7 @@ export default function Filters() {
   };
 
   useEffect(() => {
-    if (isPending) {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
-    }
+    setIsLoading(isPending);
   }, [isPending]);
 
   return (

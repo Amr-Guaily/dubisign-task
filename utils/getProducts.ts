@@ -22,7 +22,9 @@ export async function getProducts(
     ][]
   );
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    'https://dubisign-task-two.vercel.app';
 
   try {
     const response = await fetch(
