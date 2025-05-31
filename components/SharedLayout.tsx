@@ -27,9 +27,7 @@ export default function SharedLayout({ children }: SharedLayoutProps) {
       <div className="min-h-screen bg-gray-50">
         <Header onCartToggle={() => setIsCartOpen(!isCartOpen)} />
 
-        <LoadingProvider>
-          <main>{children}</main>
-        </LoadingProvider>
+        <main>{children}</main>
 
         <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       </div>

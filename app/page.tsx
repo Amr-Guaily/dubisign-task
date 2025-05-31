@@ -11,6 +11,7 @@ import { SearchProvider } from '@/context/SearchContext';
 
 import { SearchParams } from '@/types';
 import { getProducts } from '@/utils/getProducts';
+import { LoadingProvider } from '@/context/LoadingContext';
 
 export default async function Home({
   searchParams,
@@ -30,17 +31,19 @@ export default async function Home({
                 max: Number(params.maxPrice) || 500,
               }}
             >
-              {/* Sidebar Filters */}
-              <Filters />
+              <LoadingProvider>
+                {/* Sidebar Filters */}
+                <Filters />
 
-              {/* Main Content */}
-              <div className="flex-1">
-                <ActiveFilters />
+                {/* Main Content */}
+                <div className="flex-1">
+                  <ActiveFilters />
 
-                <Suspense fallback={<LoadingSpinner />}>
-                  <ProductList params={params} />
-                </Suspense>
-              </div>
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <ProductList params={params} />
+                  </Suspense>
+                </div>
+              </LoadingProvider>
             </PriceRangeProvider>
           </CategoryProvider>
         </SearchProvider>
